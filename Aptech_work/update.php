@@ -20,10 +20,10 @@ include('connection.php')
     <form action="" method="post">
 
       <?php
-     
+
       if (isset($_GET['id'])) {
         $up = $_GET['id'];
-      
+
         $fet2 = mysqli_query($mysqli, "select * from demodata where id=$up");
         $excist = mysqli_fetch_assoc($fet2);
       }
@@ -31,25 +31,25 @@ include('connection.php')
       ?>
       <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" class="form-control" name="upname" id="name" placeholder="Enter your name" value="<?php echo  $excist['uname']?>">
+        <input type="text" class="form-control" name="upname" id="name" placeholder="Enter your name" value="<?php echo  $excist['uname'] ?>">
       </div>
       <div class="form-group">
         <label for="email">Email address</label>
-        <input type="email" class="form-control" name="upemail" id="email" placeholder="Enter your email" value="<?php echo  $excist['uemail']?>">
+        <input type="email" class="form-control" name="upemail" id="email" placeholder="Enter your email" value="<?php echo  $excist['uemail'] ?>">
       </div>
       <div class="radio-container">
         <label>
-          <input type="radio" name="upgender"  value="male" <?php if($excist['gender'] == 'male') echo 'checked'; ?>>
+          <input type="radio" name="upgender" value="male" <?php $excist['gender'] ?>>
           Male
         </label>
         <label>
-          <input type="radio" name="upgender"  value="female" <?php if($excist['gender'] == 'female') echo 'checked'; ?>>
+          <input type="radio" name="upgender" value="female" <?php $excist['gender']  ?>>
           Female
         </label>
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" class="form-control" name="uppass" id="password" placeholder="Password" value="<?php echo $excist['pass'];?>">
+        <input type="password" class="form-control" name="uppass" id="password" placeholder="Password" value="<?php echo $excist['pass']; ?>">
       </div>
       <button type="submit" class="btn btn-primary" name="btn_update">Submit</button>
     </form>
@@ -74,13 +74,12 @@ if (isset($_POST['btn_update'])) {
 
 
   $uprow = mysqli_query($mysqli, "UPDATE `demodata` SET `uname`='$upname',`uemail`='$upemail',`gender`='$upgender',`pass`='$uppass' WHERE id='$up' ");
-if($uprow){
- echo "<script>alert ('Data Updated')
+  if ($uprow) {
+    echo "<script>alert ('Data Updated')
  window.location.href='select.php';</script>";
-}else{
-  echo "<script>alert ('Data Not Updated')</script>";
-}
-
+  } else {
+    echo "<script>alert ('Data Not Updated')</script>";
+  }
 }
 
 ?>

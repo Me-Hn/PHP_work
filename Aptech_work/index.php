@@ -59,7 +59,7 @@ if (isset($_POST['btn'])) {
   $name = $_POST['name'];
   $email = $_POST['email'];
   $pass = $_POST['pass'];
-  $gender = isset($_POST['gender']) ? $_POST['gender'] : '';
+  $gender = isset($_POST['gender']);
 
 
 
